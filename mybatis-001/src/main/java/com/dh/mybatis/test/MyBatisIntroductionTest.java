@@ -16,12 +16,12 @@ public class MyBatisIntroductionTest {
         InputStream is = Resources.getResourceAsStream("mybatis-config.xml");
         SqlSessionFactory sqlSessionFactory = sqlSessionFactoryBuilder.build(is);//一般情况下都是一个数据库对应一个SqlSessionFactory对象
         // 3. 创建SqlSession
-        SqlSession sqlSession = sqlSessionFactory.openSession();
+        SqlSession sqlSession = sqlSessionFactory.openSession(true);
         //执行SQL语句
         int count = sqlSession.insert("insertCar");
         System.out.println("插入了" + count + "条记录...");
 
         //手动提交
-        sqlSession.commit();
+//        sqlSession.commit();
     }
 }
