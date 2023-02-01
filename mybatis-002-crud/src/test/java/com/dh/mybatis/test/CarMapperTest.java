@@ -6,9 +6,43 @@ import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class CarMapperTest {
+    @Test
+    public void testSelectAll() {
+        SqlSession sqlSession = SqlSessionUtil.openSession();
+        List<Object> cars = sqlSession.selectList("selectAll");
+        cars.forEach(car -> System.out.println(car));
+        sqlSession.close();
+    }
+    @Test
+    public void testSelectById() {
+        SqlSession sqlSession = SqlSessionUtil.openSession();
+        Object car = sqlSession.selectOne("selectById", 1);
+        System.out.println(car);
+        sqlSession.close();
+    }
+    @Test
+    public void testUpdateById() {
+        SqlSession sqlSession = SqlSessionUtil.openSession();
+        Car car = new Car(40L, "9999", "凯美瑞", 30.3, "1999-11-21", "燃油车");
+        int count = sqlSession.update("updateById", car);
+        System.out.println("修改了" + count + "条记录。。。");
+        sqlSession.commit();
+        sqlSession.close();
+    }
+    @Test
+    public void testDeleteById() {
+        SqlSession sqlSession = SqlSessionUtil.openSession();
+        Car car = new Car();
+        car.setId(20L);
+        int count = sqlSession.delete("deleteById", car);
+        System.out.println("删除了" + count + "条记录 ...");
+        sqlSession.commit();
+        sqlSession.close();
+    }
     @Test
     public void testInsertCarByPojo() {
         SqlSession sqlSession = SqlSessionUtil.openSession();
