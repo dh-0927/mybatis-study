@@ -4,13 +4,9 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
-    <properties resource="jdbc.properties"></properties>
-<!--    <settings>-->
-<!--        &lt;!&ndash;开启驼峰命名自动映射&ndash;&gt;-->
-<!--        <setting name="mapUnderscoreToCamelCase" value="true"/>-->
-<!--    </settings>-->
+    <properties resource=""></properties>
     <typeAliases>
-        <package name="com.dh.mybatis.pojo"></package>
+        <package name=""></package>
     </typeAliases>
     <environments default="development">
         <environment id="development">
@@ -24,6 +20,6 @@
         </environment>
     </environments>
     <mappers>
-        <package name="com.dh.mybatis.mapper"/>
+        <package name=""/>
     </mappers>
 </configuration>

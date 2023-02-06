@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dh.mybatis.mapper.StudentMapper">
+
+    <cache></cache>
+
+    <resultMap id="StudentStep1ResultMap" type="Student">
+        <id property="sid" column="sid"></id>
+        <result property="sname" column="sname"></result>
+        <association property="clazz"
+                     select = "com.dh.mybatis.mapper.ClazzMapper.selectByIdStep2"
+                     column="cid">
+        </association>
+    </resultMap>
+
+    <select id="selectByIdStep1" resultMap="StudentStep1ResultMap">
+        select
+            sid, sname, cid
+        from
+            t_stu
+        where
+            sid = #{sid}
+    </select>
+
+
+    <resultMap id="StudentResultMap" type="student">
+        <id property="sid" column="sid"></id>
+        <result property="sname" column="sname"></result>
+        <association property="clazz" javaType="Clazz">
+            <id property="cid" column="cid"></id>
+            <result property="cname" column="cname"></result>
+        </association>
+    </resultMap>
+
+    <select id="selectById" resultMap="StudentResultMap">
+        select
+            s.sid, s.sname, s.cid, c.cname
+        from
+            t_stu s left join t_clazz c on s.cid = c.cid
+        where
+            s.sid = #{sid}
+    </select>
+
+    <select id="selectByCid" resultType="student">
+        select
+            sid, sname
+        from
+            t_stu
+        where
+            cid = #{cid}
+    </select>
+
+</mapper>

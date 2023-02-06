@@ -5,10 +5,6 @@
 
 <configuration>
     <properties resource="jdbc.properties"></properties>
-<!--    <settings>-->
-<!--        &lt;!&ndash;开启驼峰命名自动映射&ndash;&gt;-->
-<!--        <setting name="mapUnderscoreToCamelCase" value="true"/>-->
-<!--    </settings>-->
     <typeAliases>
         <package name="com.dh.mybatis.pojo"></package>
     </typeAliases>
